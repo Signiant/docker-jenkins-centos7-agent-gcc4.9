@@ -21,12 +21,17 @@ COPY yum-packages.list /tmp/yum.packages.list
 RUN chmod +r /tmp/yum.packages.list
 RUN yum install -y -q `cat /tmp/yum.packages.list`
 
-# Install yum development tools
+# Install c/c++ development tools
 RUN yum install -y centos-release-scl 
 RUN yum install -y devtoolset-3
 RUN scl enable devtoolset-3 bash
 RUN printf "\nsource scl_source enable devtoolset-3\n" >> /root/.bashrc
 RUN printf "\nsource scl_source enable devtoolset-3\n" >> /home/$BUILD_USER/.bashrc
+RUN yum install -y cmake3
+RUN mv /usr/bin/cmake /usr/bin/cmake2
+RUN mv /usr/bin/ccmake /usr/bin/ccmake2
+RUN ln -s /usr/bin/cmake3 /usr/bin/cmake
+RUN ln -s /usr/bin/ccmake3 /usr/bin/ccmake
 
 # Install jboss
 RUN wget http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/jboss-5.1.0.GA.zip/download -O /tmp/jboss-5.1.0.GA.zip
