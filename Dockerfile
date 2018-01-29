@@ -21,9 +21,6 @@ COPY yum-packages.list /tmp/yum.packages.list
 RUN chmod +r /tmp/yum.packages.list
 RUN yum install -y -q `cat /tmp/yum.packages.list`
 
-# Remove any trace of java7
-RUN yum remove -y java-1.7.0-openjdk.x86_64 java-1.7.0-openjdk-headless.x86_64
-
 # Install c/c++ development tools
 RUN yum install -y centos-release-scl 
 RUN yum install -y devtoolset-3
@@ -78,6 +75,9 @@ RUN npm install -g npm
 RUN npm install -g n
 RUN n 6.10.0
 RUN npm install -g phantomjs
+
+# Remove any trace of java7
+RUN yum remove -y java-1.7.0-openjdk.x86_64 java-1.7.0-openjdk-headless.x86_64
 
 # Make sure anything/everything we put in the build user's home dir is owned correctly
 RUN chown -R $BUILD_USER:$BUILD_USER_GROUP /home/$BUILD_USER
