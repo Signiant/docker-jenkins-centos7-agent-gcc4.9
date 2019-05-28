@@ -42,7 +42,10 @@ RUN rm -f /tmp/jboss-5.1.0.GA.zip
 
 # Install Compass
 RUN gem install json_pure
-RUN gem update --system
+# RUN gem update --system
+RUN gem install "rubygems-update:<3.0.0" --no-document
+RUN update_rubygems
+RUN gem install rb-inotify -v 0.9.10
 RUN gem install compass
 
 # Install the latest version of git
@@ -68,7 +71,7 @@ RUN cd /tmp && \
 RUN easy_install -q pip && \
     pip install --upgrade pip
 
-ENV UMPIRE_VERSION 0.5.4
+ENV UMPIRE_VERSION 0.5.5
 # Install umpire
 RUN pip2.7 install umpire==${UMPIRE_VERSION}
 
