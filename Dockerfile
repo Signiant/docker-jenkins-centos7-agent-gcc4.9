@@ -76,10 +76,6 @@ RUN cd /tmp && \
     make && \
     make altinstall
 
-# Install pip
-RUN easy_install -q pip && \
-    pip install --upgrade pip
-
 ENV UMPIRE_VERSION 0.5.5
 # Install umpire
 RUN pip2.7 install umpire==${UMPIRE_VERSION}
