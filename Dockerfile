@@ -21,15 +21,6 @@ COPY yum-packages.list /tmp/yum.packages.list
 RUN chmod +r /tmp/yum.packages.list
 RUN yum install -y -q `cat /tmp/yum.packages.list`
 
-# Install Ruby
-RUN cd /tmp && \
-    wget https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.gz && \
-    tar xvfz ./ruby-2.5.0.tar.gz && \
-    cd ruby-2.5.0 && \
-    ./configure --prefix=/usr && \
-    make && \
-    make install
-
 # Install c/c++ development tools
 #RUN yum install -y centos-release-scl 
 #RUN yum install -y devtoolset-3
@@ -48,6 +39,15 @@ RUN ln -s /usr/local/bin/cmake-3.12.0-Linux-x86_64/bin/cmake /usr/bin/cmake
 #RUN wget http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/jboss-5.1.0.GA.zip/download -O /tmp/jboss-5.1.0.GA.zip
 #RUN unzip -q /tmp/jboss-5.1.0.GA.zip -d /usr/local
 #RUN rm -f /tmp/jboss-5.1.0.GA.zip
+
+# Install Ruby
+RUN cd /tmp && \
+    wget https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.8.tar.gz && \
+    tar xvfz ./ruby-2.7.8.tar.gz && \
+    cd ruby-2.7.8 && \
+    ./configure --prefix=/usr && \
+    make && \
+    make install
 
 # Install Compass
 RUN gem install json_pure
