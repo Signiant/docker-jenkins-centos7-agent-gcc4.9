@@ -9,6 +9,12 @@ ENV BUILD_USER_GROUP users
 RUN unlink /etc/localtime
 RUN ln -s /usr/share/zoneinfo/America/New_York /etc/localtime
 
+# Install aws
+RUN curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+RUN unzip -q /tmp/awscliv2.zip -d /usr/local
+CMD ["sh", "/usr/local/awscliv2/aws/install"]
+RUN rm -f /tmp/awscliv2.zip
+
 # Install maven
 ENV MAVEN_VERSION 3.2.1
 RUN curl -fsSL http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar xzf - -C /usr/share \
