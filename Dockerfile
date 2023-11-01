@@ -21,6 +21,15 @@ COPY yum-packages.list /tmp/yum.packages.list
 RUN chmod +r /tmp/yum.packages.list
 RUN yum install -y -q `cat /tmp/yum.packages.list`
 
+# Install Ruby
+RUN cd /tmp && \
+    wget https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.gz && \
+    tar xvfz ./ruby-2.5.0.tar.gz && \
+    cd ruby-2.5.0 && \
+    ./configure --prefix=/usr && \
+    make && \
+    make install
+
 # Install c/c++ development tools
 RUN yum install -y centos-release-scl 
 RUN yum install -y devtoolset-3
