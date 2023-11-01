@@ -36,9 +36,9 @@ RUN cd /usr/local/bin && \
 RUN ln -s /usr/local/bin/cmake-3.12.0-Linux-x86_64/bin/cmake /usr/bin/cmake
 
 # Install jboss
-#RUN wget http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/jboss-5.1.0.GA.zip/download -O /tmp/jboss-5.1.0.GA.zip
-#RUN unzip -q /tmp/jboss-5.1.0.GA.zip -d /usr/local
-#RUN rm -f /tmp/jboss-5.1.0.GA.zip
+RUN wget --no-check-certificate http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/jboss-5.1.0.GA.zip/download -O /tmp/jboss-5.1.0.GA.zip
+RUN unzip -q /tmp/jboss-5.1.0.GA.zip -d /usr/local
+RUN rm -f /tmp/jboss-5.1.0.GA.zip
 
 # Install Ruby
 RUN cd /tmp && \
