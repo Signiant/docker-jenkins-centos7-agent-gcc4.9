@@ -11,9 +11,9 @@ RUN ln -s /usr/share/zoneinfo/America/New_York /etc/localtime
 
 # Install aws
 RUN curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
-RUN unzip -q /tmp/awscliv2.zip -d /usr/local
-CMD ["sh", "/usr/local/awscliv2/aws/install"]
-RUN rm -f /tmp/awscliv2.zip
+RUN unzip -q /tmp/awscliv2.zip -d /tmp/awscliv2
+RUN /tmp/awscliv2/aws/install
+RUN rm -rf /tmp/awscliv2*
 
 # Install maven
 ENV MAVEN_VERSION 3.2.1
